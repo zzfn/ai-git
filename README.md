@@ -1,6 +1,14 @@
-# ai-git README
+# AI Git Assistant
 
-This is the README for your extension "ai-git". After writing up a brief description, we recommend including the following sections.
+一个智能的 Git 辅助工具,帮助优化你的 Git 工作流。
+
+## 功能特性
+- [计划中] 智能 commit message 生成
+- [计划中] Git 操作建议
+- [计划中] 代码变更分析
+
+## 使用方法
+...
 
 ## Features
 
