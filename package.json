@@ -28,7 +28,8 @@
           "type": "string",
           "default": "",
           "description": "设置 AI API Key",
-          "scope": "application"
+          "scope": "application",
+          "order": 100
         },
         "aiAssistant.provider": {
           "type": "string",
@@ -41,12 +42,14 @@
             "SiliconFlow API",
             "DeepSeek API"
           ],
-          "description": "选择 AI 供应商"
+          "description": "选择 AI 供应商",
+          "order": 200
         },
         "aiAssistant.model": {
           "type": "string",
           "default": "Pro/deepseek-ai/DeepSeek-V3",
-          "description": "AI 模型名称 (例如: SiliconFlow模型: Pro/deepseek-ai/DeepSeek-V3, DeepSeek模型: deepseek-chat)"
+          "description": "AI 模型名称 (例如: SiliconFlow模型: Pro/deepseek-ai/DeepSeek-V3, DeepSeek模型: deepseek-chat)",
+          "order": 300
         },
         "aiAssistant.language": {
           "type": "string",
@@ -55,13 +58,15 @@
             "中文",
             "English"
           ],
-          "description": "设置 AI 助手的响应语言"
+          "description": "设置 AI 助手的响应语言",
+          "order": 400
         },
         "aiAssistant.customPrompt": {
           "type": "string",
-          "default": "You are a Git commit message generation expert. Please analyze the following code changes and generate a clear, standardized commit message.\nRequirements:\n1. Start with type (feat/fix/docs/style/refactor/perf/test/chore)\n2. Be concise and clear\n3. Use present tense\n\nChanges:\n{diff}",
+          "default": "你是一个 Git 提交信息生成专家。请分析以下代码修改并生成清晰、标准化的提交信息。不要使用代码块\n代码修改：{diff}\n提交信息要求：\n1. 第一行应该以以下类型之一开始：\n    feat: （新特性）\n    fix: （bug 修复）\n    docs: （文档）\n    style: （代码格式）\n    refactor: （代码重构）\n    perf: （性能优化）\n    test: （测试）\n    chore: （日常维护）\n2. 第一行长度不超过 72 个字符\n3. 第一行后留一行空白，并提供详细说明（如果需要）：\n    - 为什么需要这次修改？\n    - 这次修改如何解决问题？\n    - 是否有破坏性变更？\n4. 使用现在时态\n请仅输出提交信息，不需要任何额外的解释。",
           "description": "自定义 Commit Message 生成提示词",
-          "editPresentation": "multilineText"
+          "editPresentation": "multilineText",
+          "order": 500
         }
       }
     },
