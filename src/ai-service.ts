@@ -35,7 +35,7 @@ async function callAIAPI(apiKey: string, prompt: string): Promise<string> {
     const language = vscode.workspace.getConfiguration('aiAssistant').get('language') || '中文';
     const systemPrompt = `You are an AI assistant. Please respond in ${language}.`;
     const provider = vscode.workspace.getConfiguration('aiAssistant').get('provider') as string;
-    const model = vscode.workspace.getConfiguration('aiAssistant').get(`${provider}Model`) as string;
+    const model = vscode.workspace.getConfiguration('aiAssistant').get('model') as string;
 
     const API_ENDPOINTS = {
         siliconflow: 'https://api.siliconflow.cn/v1/chat/completions',

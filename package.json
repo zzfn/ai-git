@@ -24,6 +24,12 @@
     "configuration": {
       "title": "AI Assistant",
       "properties": {
+        "aiAssistant.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "设置 AI API Key",
+          "scope": "application"
+        },
         "aiAssistant.provider": {
           "type": "string",
           "default": "siliconflow",
@@ -37,29 +43,10 @@
           ],
           "description": "选择 AI 供应商"
         },
-        "aiAssistant.siliconflowModel": {
+        "aiAssistant.model": {
           "type": "string",
           "default": "Pro/deepseek-ai/DeepSeek-V3",
-          "enum": [
-            "Pro/deepseek-ai/DeepSeek-V3"
-          ],
-          "description": "选择 SiliconFlow 模型",
-          "when": "config.aiAssistant.provider == 'siliconflow'"
-        },
-        "aiAssistant.deepseekModel": {
-          "type": "string",
-          "default": "deepseek-chat",
-          "enum": [
-            "deepseek-chat"
-          ],
-          "description": "选择 DeepSeek 模型",
-          "when": "config.aiAssistant.provider == 'deepseek'"
-        },
-        "aiAssistant.customPrompt": {
-          "type": "string",
-          "default": "You are a Git commit message generation expert. Please analyze the following code changes and generate a clear, standardized commit message.\nRequirements:\n1. Start with type (feat/fix/docs/style/refactor/perf/test/chore)\n2. Be concise and clear\n3. Use present tense\n\nChanges:\n{diff}",
-          "description": "自定义 Commit Message 生成提示词",
-          "editPresentation": "multilineText"
+          "description": "AI 模型名称 (例如: SiliconFlow模型: Pro/deepseek-ai/DeepSeek-V3, DeepSeek模型: deepseek-chat)"
         },
         "aiAssistant.language": {
           "type": "string",
@@ -70,11 +57,11 @@
           ],
           "description": "设置 AI 助手的响应语言"
         },
-        "aiAssistant.apiKey": {
+        "aiAssistant.customPrompt": {
           "type": "string",
-          "default": "",
-          "description": "设置 AI API Key",
-          "scope": "application"
+          "default": "You are a Git commit message generation expert. Please analyze the following code changes and generate a clear, standardized commit message.\nRequirements:\n1. Start with type (feat/fix/docs/style/refactor/perf/test/chore)\n2. Be concise and clear\n3. Use present tense\n\nChanges:\n{diff}",
+          "description": "自定义 Commit Message 生成提示词",
+          "editPresentation": "multilineText"
         }
       }
     },
