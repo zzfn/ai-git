@@ -3,6 +3,8 @@
   "displayName": "ai-git",
   "description": "git message ",
   "version": "0.0.1",
+  "publisher": "ai-git",
+  "icon": "icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/zzfn/ai-git.git"
@@ -22,6 +24,11 @@
     "configuration": {
       "title": "AI Assistant",
       "properties": {
+        "aiAssistant.customPrompt": {
+          "type": "string",
+          "default": "You are a Git commit message generation expert. Please analyze the following code changes and generate a clear, standardized commit message.\nRequirements:\n1. Start with type (feat/fix/docs/style/refactor/perf/test/chore)\n2. Be concise and clear\n3. Use present tense\n\nChanges:\n{diff}",
+          "description": "自定义 Commit Message 生成提示词"
+        },
         "aiAssistant.language": {
           "type": "string",
           "default": "中文",
@@ -48,7 +55,7 @@
       "scm/title": [
         {
           "command": "ai-git.generateCommitMessage",
-          "group": "navigation",
+          "group": "navigation@1",
           "when": "scmProvider == git"
         }
       ]

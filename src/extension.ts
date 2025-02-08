@@ -15,21 +15,23 @@ export function activate(context: vscode.ExtensionContext) {
 	// 注册生成 commit message 命令
 	let disposableCommitMessage = vscode.commands.registerCommand('ai-git.generateCommitMessage', async () => {
 		try {
+			// 更改图标为加载状态
+			vscode.commands.executeCommand('setContext', 'ai-git.isLoading', true);
+			
 			// 检查是否有暂存的更改
 			if (!await hasGitChanges()) {
 				vscode.window.showWarningMessage('No staged changes found. Please stage your changes first.');
 				return;
 			}
 
-			// 获取 git 变更
 			const changes = await getGitChanges();
 			
 			// 显示进度提示
 			await vscode.window.withProgress({
-				location: vscode.ProgressLocation.Notification,
-				title: "Generating commit message...",
+				location: vscode.ProgressLocation.Window,
+				title: "生成提交信息中...",
 				cancellable: false
-			}, async () => {
+			}, async (progress) => {
 				// 生成 commit message
 				const message = await generateCommitMessage(changes);
 				
@@ -39,6 +41,9 @@ export function activate(context: vscode.ExtensionContext) {
 			});
 		} catch (error: any) {
 			vscode.window.showErrorMessage(error.message);
+		} finally {
+			// 恢复原始图标
+			vscode.commands.executeCommand('setContext', 'ai-git.isLoading', false);
 		}
 	});
 

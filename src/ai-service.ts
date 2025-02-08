@@ -15,17 +15,10 @@ export async function generateCommitMessage(changes: string) {
     }
 
     const language = vscode.workspace.getConfiguration('aiAssistant').get('language') || '中文';
+    const customPrompt = vscode.workspace.getConfiguration('aiAssistant').get('customPrompt') as string;
 
     // 构建 prompt
-    const prompt = `
-    You are a Git commit message generation expert. Please analyze the following code changes and generate a clear, standardized commit message in ${language}.  
-    Code changes: {diff}  Requirements for the commit message: 
-    1. First line should start with one of these types:    feat: (new feature)    fix: (bug fix)    docs: (documentation)    style: (formatting)    refactor: (code refactoring)    perf: (performance)    test: (testing)    chore: (maintenance) 
-    2. First line should be no longer than 72 characters  
-    3. After the first line, leave one blank line and provide detailed explanation if needed:    - Why was this change necessary?    - How does it address the issue?    - Any breaking changes?  
-    4. Use present tense  Please output only the commit message, without any additional explanations. 
-    代码变更：
-    ${changes}`;
+    const prompt = customPrompt.replace('{diff}', changes);
 
     try {
         const response = await callAIAPI(apiKey, prompt);
