@@ -2,7 +2,7 @@
   "name": "ai-git",
   "displayName": "ai-git",
   "description": "git message ",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ai-git",
   "icon": "icon.png",
   "repository": {
@@ -27,7 +27,10 @@
         "aiAssistant.provider": {
           "type": "string",
           "default": "siliconflow",
-          "enum": ["siliconflow", "deepseek"],
+          "enum": [
+            "siliconflow",
+            "deepseek"
+          ],
           "enumDescriptions": [
             "SiliconFlow API",
             "DeepSeek API"
@@ -37,14 +40,18 @@
         "aiAssistant.siliconflowModel": {
           "type": "string",
           "default": "Pro/deepseek-ai/DeepSeek-V3",
-          "enum": ["Pro/deepseek-ai/DeepSeek-V3"],
+          "enum": [
+            "Pro/deepseek-ai/DeepSeek-V3"
+          ],
           "description": "选择 SiliconFlow 模型",
           "when": "config.aiAssistant.provider == 'siliconflow'"
         },
         "aiAssistant.deepseekModel": {
           "type": "string",
           "default": "deepseek-chat",
-          "enum": ["deepseek-chat"],
+          "enum": [
+            "deepseek-chat"
+          ],
           "description": "选择 DeepSeek 模型",
           "when": "config.aiAssistant.provider == 'deepseek'"
         },
