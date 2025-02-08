@@ -34,6 +34,13 @@ export async function generateCommitMessage(changes: string) {
 async function callAIAPI(apiKey: string, prompt: string): Promise<string> {
     const language = vscode.workspace.getConfiguration('aiAssistant').get('language') || '中文';
     const systemPrompt = `You are an AI assistant. Please respond in ${language}.`;
+    const provider = vscode.workspace.getConfiguration('aiAssistant').get('provider') as string;
+    const model = vscode.workspace.getConfiguration('aiAssistant').get(`${provider}Model`) as string;
+
+    const API_ENDPOINTS = {
+        siliconflow: 'https://api.siliconflow.cn/v1/chat/completions',
+        deepseek: 'https://api.deepseek.com/v1/chat/completions'
+    };
 
     const options = {
         method: 'POST',
@@ -42,7 +49,7 @@ async function callAIAPI(apiKey: string, prompt: string): Promise<string> {
             'Authorization': `Bearer ${apiKey}`
         },
         body: JSON.stringify({
-            model: "Pro/deepseek-ai/DeepSeek-V3",
+            model: model,
             messages: [
                 { role: "system", content: systemPrompt },
                 { role: "user", content: prompt }
@@ -51,7 +58,7 @@ async function callAIAPI(apiKey: string, prompt: string): Promise<string> {
     };
 
     try {
-        const response = await fetch('https://api.siliconflow.cn/v1/chat/completions', options);
+        const response = await fetch(API_ENDPOINTS[provider as keyof typeof API_ENDPOINTS], options);
         if (!response.ok) {
             throw new Error(`API request failed: ${response.statusText}`);
         }

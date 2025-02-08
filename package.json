@@ -24,10 +24,35 @@
     "configuration": {
       "title": "AI Assistant",
       "properties": {
+        "aiAssistant.provider": {
+          "type": "string",
+          "default": "siliconflow",
+          "enum": ["siliconflow", "deepseek"],
+          "enumDescriptions": [
+            "SiliconFlow API",
+            "DeepSeek API"
+          ],
+          "description": "选择 AI 供应商"
+        },
+        "aiAssistant.siliconflowModel": {
+          "type": "string",
+          "default": "Pro/deepseek-ai/DeepSeek-V3",
+          "enum": ["Pro/deepseek-ai/DeepSeek-V3"],
+          "description": "选择 SiliconFlow 模型",
+          "when": "config.aiAssistant.provider == 'siliconflow'"
+        },
+        "aiAssistant.deepseekModel": {
+          "type": "string",
+          "default": "deepseek-chat",
+          "enum": ["deepseek-chat"],
+          "description": "选择 DeepSeek 模型",
+          "when": "config.aiAssistant.provider == 'deepseek'"
+        },
         "aiAssistant.customPrompt": {
           "type": "string",
           "default": "You are a Git commit message generation expert. Please analyze the following code changes and generate a clear, standardized commit message.\nRequirements:\n1. Start with type (feat/fix/docs/style/refactor/perf/test/chore)\n2. Be concise and clear\n3. Use present tense\n\nChanges:\n{diff}",
-          "description": "自定义 Commit Message 生成提示词"
+          "description": "自定义 Commit Message 生成提示词",
+          "editPresentation": "multilineText"
         },
         "aiAssistant.language": {
           "type": "string",
