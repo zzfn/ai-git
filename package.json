@@ -2,7 +2,7 @@
   "name": "ai-git",
   "displayName": "ai-git",
   "description": "git message ",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publisher": "ai-git",
   "icon": "icon.png",
   "repository": {
@@ -32,7 +32,10 @@
         "aiAssistant.language": {
           "type": "string",
           "default": "中文",
-          "enum": ["中文", "English"],
+          "enum": [
+            "中文",
+            "English"
+          ],
           "description": "设置 AI 助手的响应语言"
         },
         "aiAssistant.apiKey": {
